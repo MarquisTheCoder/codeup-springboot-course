@@ -14,6 +14,7 @@ public class BlogControllers {
     public String hello(@PathVariable String name){
         return String.format("Hello %s from spring", name);
     }
+
 }
 
 
