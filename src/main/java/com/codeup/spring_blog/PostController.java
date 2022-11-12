@@ -14,6 +14,9 @@ public class PostController {
         this.postDao = postDao;
     }
 
+
+    //mapping to the post pages get request so it returns the post creation page
+    //on get
     @GetMapping("/post")
     public String getPosts(@RequestParam(name = "post_title") String post_title, Model model){
         model.addAttribute("ads", postDao.findAll());
@@ -21,6 +24,9 @@ public class PostController {
         return "post/create";
     }
 
+    //telling the controller that on post requests the user
+    //data will be submitted to the controller and outputted through the html
+    //model page
     @PostMapping("/post")
     public String createNewPost(
             @RequestParam(name = "post_title") String post_title,
