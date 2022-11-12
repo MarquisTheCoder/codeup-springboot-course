@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>spring_blog</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, width=device-width">
+</head>
+
+<body>
+
+	<span th:text="${post_title}"></span>
+	<br>
+	<span th:text="${post_content}"></span>
+	
+	<form action="/post">
+		<label for="post_title">Title: </label><br>
+		<input type="text" name="post_title" id="post_title">
+		<br>
+		<label for="post_content">Content:</label>
+		<br>
+		<textarea name="post_content" id="post_content" cols="30" rows="10"></textarea>
+		<br>
+		<button>post message</button>
+	</form>
+
+</body>
+</html>

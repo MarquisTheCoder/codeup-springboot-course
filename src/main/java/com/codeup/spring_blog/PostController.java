@@ -1,34 +1,34 @@
 package com.codeup.spring_blog;
 
+import com.codeup.spring_blog.Repositories.PostRepository;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PostController {
 
+    private final PostRepository postDao;
+
+    public PostController(PostRepository postDao) {
+        this.postDao = postDao;
+    }
+
     @GetMapping("/post")
-    @ResponseBody
-    public String getPosts(){
-        return "this will return all post";
+    public String getPosts(@RequestParam(name = "post_title") String post_title, Model model){
+        model.addAttribute("ads", postDao.findAll());
+        model.addAttribute("post_title", post_title);
+        return "post/create";
     }
 
-    @GetMapping("/post/{id}")
-    @ResponseBody
-    public String getSpecificPost(){
-        return "This returns individual post";
-    }
+    @PostMapping("/post")
+    public String createNewPost(
+            @RequestParam(name = "post_title") String post_title,
+            @RequestParam(name = "post_content") String post_content,
+            Model model){
 
-    @GetMapping("/post/{create}")
-    @ResponseBody
-    public String getPostCreationScreen(){
-        return "The page for creating post";
-    }
-
-    @PostMapping("/post/{create}")
-    @ResponseBody
-    public String createNewPost(){
-        return "creating a post";
+            model.addAttribute("post_title", post_title);
+            model.addAttribute("post_content", post_content);
+            return "post/post";
     }
 }
