@@ -1,26 +1,30 @@
 package com.codeup.spring_blog.Entities;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
+
 @Entity
-@Table(name = "posts")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //long is used as it an adequate replacement for an unsigned integer but
-    //it is not truly unsigned and is capable of negative integers its just as capable of
-    //reaching the same size as a regular unsigned int
-    private long id;
+    private Long id;
 
-    @Column(nullable = false, length = 100)
+    @Column
     private String title;
 
-    @Column(nullable = true, length = 500)
+    @Column
     private String description;
 
-    @Column(nullable = false, length = 1000)
+    @Column
     private String content;
 
 }

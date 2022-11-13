@@ -56,6 +56,31 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.beamfoundry.bundles.spring-data-jpa.test/org.beamfoundry.bundles.spring-data-jpa.test-common -->
+        <dependency>
+            <groupId>org.beamfoundry.bundles.spring-data-jpa.test</groupId>
+            <artifactId>org.beamfoundry.bundles.spring-data-jpa.test-common</artifactId>
+            <version>1.6.4.RELEASE_2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
     </dependencies>
 
     <build>

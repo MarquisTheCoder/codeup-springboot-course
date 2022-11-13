@@ -9,13 +9,14 @@
 
 <body>
 
-	<span th:text="${post_title}"></span>
-	<br>
-	<span th:text="${post_content}"></span>
-	
-	<form action="/post">
+	<h1 th:text="${post_title}"></h1>
+	<form action="/post" method="post">
 		<label for="post_title">Title: </label><br>
 		<input type="text" name="post_title" id="post_title">
+		<br>
+		<label for="post_description">Description</label>
+		<br>
+		<input type="text" name="post_description" id="post_description">
 		<br>
 		<label for="post_content">Content:</label>
 		<br>
