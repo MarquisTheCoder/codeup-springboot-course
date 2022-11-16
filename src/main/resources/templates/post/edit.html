@@ -1,13 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<!--
-    Creator: Deshawn Marquis, Williams
-    Github Profile: https://github.com/MarquisTheCoder
-    Date Created: 11/15/22
-    Time Created: 9:23 PM
-    File Name: edit.html
-    -->
 <head>
 	
 	<title>spring_blog</title>
@@ -17,16 +10,21 @@
 
 </head>
 <body>
-
-	<form th:action="@{/post/${id}/edit}" th:method="post" th:object="${post}">
-		Title:
-		<input th:field="*{title}" />
+	
+	<h1>Edit user data</h1>
+	<form th:action="@{/post/__${id}__/edit}" th:method="post" th:object="${post}" >
+		
+		<label for="title">Title for [<span th:text="${id}"></span>] </label>
+		<input th:field="*{title}" id="title" name="title" type="text"
+		       th:placeholder="${post.getTitle()}"/>
 		<br/>
-		Description:
-		<input th:field="*{description}">
+		<label for="description">Description</label>
+		<input th:field="*{description}" id="description" name="description"
+		       type="text" th:placeholder="${post.getDescription()}">
 		<br/>
-		Content:
-		<textarea th:field="*{content}" />
+		<label for="content">Content</label>
+		<textarea th:field="*{content}"  id="content" name="content"
+		          th:placeholder="${post.getContent()}"></textarea>
 		<br/>
 		<input type="submit" />
 	</form>

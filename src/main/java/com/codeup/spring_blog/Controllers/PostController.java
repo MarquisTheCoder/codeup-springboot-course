@@ -32,46 +32,53 @@ public class PostController {
     //on get
     @GetMapping("/post")
     public String getPosts(Model model){
-        model.addAttribute("post_title", postRepository.findAll());
+        model.addAttribute("all_post", postRepository.findAll());
         return "post/create";
     }
 
-    @GetMapping("/post/{id}/edit")
-    public String editPostShow(@PathVariable(name  = "id") Long id,
-                           Model model){
-        model.addAttribute("post", new Post());
-        return "post/edit";
-    }
-    @PostMapping("/post/{id}/edit")
-    public String editPost(@PathVariable(name = "id") Long id, @ModelAttribute Post post, Model model){
-        model.addAttribute("id", id);
-        postRepository.saveAndFlush(
-                postRepository.getById(id).builder()
-                .title(post.getTitle())
-                .description(post.getDescription())
-                .content(post.getContent()).build());
-        return "post/create";
-    }
     //telling the controller that on post requests the user
     //data will be submitted to the controller and outputted through the html
     //model page
     @PostMapping("/post")
     public String createNewPost(
+
             @RequestParam("post_title") String post_title,
             @RequestParam("post_content") String post_content,
             @RequestParam("post_description") String post_description){
-            Users user = (Users) usersRepository.getById(1L);
 
+            Users user = (Users) usersRepository.getReferenceById(1L);
+
+            //creating a Post object to be saved to the server
             Post post = new Post().builder()
-                            .title(post_title)
-                                    .description(post_description)
-                                            .content(post_content)
-                                                    .user((Users)user)
-                                                            .build();
+                    .title(post_title)
+                    .description(post_description)
+                    .content(post_content)
+                    .user((Users)user)
+                    .build();
 
             String email = post.getUser().getEmail();
 
             postRepository.saveAndFlush((Post) post);
             return "redirect:/post";
     }
+
+
+    //path to show edit page for page with an id of ${id}
+    @GetMapping("/post/{id}/edit")
+    public String editPostShow(@PathVariable(name = "id") int id, Model model){
+        Post post = postRepository.getReferenceById((long) id);
+        if(id > postRepository.findAll().size()){
+
+            return "redirect:/post";
+        }
+        model.addAttribute("id", id);
+        model.addAttribute("post", post);
+        return "post/edit";
+    }
+    @PostMapping("/post/{id}/edit")
+    public String editPost(@ModelAttribute Post post){
+        postRepository.save(post);
+        return "/post/create";
+    }
+
 }
