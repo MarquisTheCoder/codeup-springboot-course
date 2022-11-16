@@ -2,16 +2,17 @@ package com.codeup.spring_blog.Entities;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Post {
 
     @Id
@@ -27,4 +28,7 @@ public class Post {
     @Column
     private String content;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Users user;
 }

@@ -7,10 +7,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class BlogControllers {
-
-
-    @GetMapping("/hello/{name}")
     @ResponseBody
+    @GetMapping("/hello/{name}")
     public String hello(@PathVariable String name){
         return String.format("Hello %s from spring", name);
     }

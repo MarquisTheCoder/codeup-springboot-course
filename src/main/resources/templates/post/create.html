@@ -5,25 +5,43 @@
 	<title>spring_blog</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="initial-scale=1, width=device-width">
+	<link rel="stylesheet" href="/css/main.css">
 </head>
 
 <body>
-
-	<h1 th:text="${post_title}"></h1>
-	<form action="/post" method="post">
-		<label for="post_title">Title: </label><br>
-		<input type="text" name="post_title" id="post_title">
-		<br>
-		<label for="post_description">Description</label>
-		<br>
-		<input type="text" name="post_description" id="post_description">
-		<br>
-		<label for="post_content">Content:</label>
-		<br>
-		<textarea name="post_content" id="post_content" cols="30" rows="10"></textarea>
-		<br>
-		<button>post message</button>
-	</form>
-
+	
+	<header>
+	
+	</header>
+	<main>
+		<section>
+				<section class="section-post--generation">
+					<div th:each="post: ${post_title}">
+						<p th:text="${post.getUser().getEmail()}"></p>
+						<p th:text="${post.getDescription()}"></p>
+						<p th:text="${post.getContent()}"></p>
+					</div>
+				</section>
+		</section>
+		<section>
+			<form action="/post" method="post">
+				<label for="post_title">Title: </label><br>
+				<input type="text" name="post_title" id="post_title">
+				<br>
+				<label for="post_description">Description</label>
+				<br>
+				<input type="text" name="post_description" id="post_description">
+				<br>
+				<label for="post_content">Content:</label>
+				<br>
+				<textarea name="post_content" id="post_content" cols="30" rows="10"></textarea>
+				<br>
+				<button>post message</button>
+			</form>
+		</section>
+		
+	</main>
+	
+	
 </body>
 </html>

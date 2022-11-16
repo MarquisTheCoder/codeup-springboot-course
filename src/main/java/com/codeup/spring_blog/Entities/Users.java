@@ -1,10 +1,19 @@
 package com.codeup.spring_blog.Entities;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
-public class Users {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class Users{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

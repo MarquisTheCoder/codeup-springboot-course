@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+    Creator: Deshawn Marquis, Williams
+    Github Profile: https://github.com/MarquisTheCoder
+    Date Created: 11/15/22
+    Time Created: 9:23 PM
+    File Name: edit.html
+    -->
+<head>
+	
+	<title>spring_blog</title>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, width=device-width">
+
+</head>
+<body>
+
+	<form th:action="@{/post/${id}/edit}" th:method="post" th:object="${post}">
+		Title:
+		<input th:field="*{title}" />
+		<br/>
+		Description:
+		<input th:field="*{description}">
+		<br/>
+		Content:
+		<textarea th:field="*{content}" />
+		<br/>
+		<input type="submit" />
+	</form>
+
+</body>
+</html>

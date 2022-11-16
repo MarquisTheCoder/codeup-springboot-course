@@ -14,6 +14,10 @@ public class Ad{
 
     @Column(nullable = false)
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Users user;
 }
 /* THE ABOVE ENTITY EQUALS
 * CREATE TABLE ads (
