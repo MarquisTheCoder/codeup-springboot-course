@@ -9,6 +9,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Entity;
+
 @Service("mailService")
 public class EmailService {
 
@@ -18,7 +20,7 @@ public class EmailService {
     @Value("${spring.mail.from}")
     private String from;
 
-    public void prepareAndSend(Post post, String subject, String body) {
+    public void prepareAndSend( Post post, String subject, String body) {
 
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(from);

@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
+
 @Controller
 public class PostController {
 
@@ -49,7 +51,6 @@ public class PostController {
             @RequestParam("post_description") String post_description){
 
         Users user = (Users) usersRepository.getReferenceById(1L);
-
         //creating a Post
         // object to be saved
         // to the server
@@ -70,21 +71,19 @@ public class PostController {
     //path to show edit page for page with an id of ${id}
     @GetMapping("/post/{id}/edit")
     public String editPostShow(@PathVariable(name = "id") int id, Model model){
-        Post post = postRepository.getReferenceById((long)id);
-        if(id > postRepository.findAll().size()){
-            return "redirect:/post";
-        }
+        Post post = postRepository.getReferenceById((long) id);
+
         model.addAttribute("id", id);
         model.addAttribute("post", post);
         return "post/edit";
     }
 
     @PostMapping("/post/{id}/edit")
-    public String editPost(@ModelAttribute Post post){
+    public String editPost(@ModelAttribute(name = "post") Post post){
+//        postRepository.save(post);
 
-        postRepository.save(post);
-//        emailService.prepareAndSend(post, "Alert Post Edit", "" +
-//                "Someone just edited your post so ummmmmmm......could you figure it out or something");
+        emailService.prepareAndSend(post, "Alert Post Edit",
+                "Someone just edited your post so ummmmmmm......could you figure it out or something");
         return "redirect:/post";
     }
 
