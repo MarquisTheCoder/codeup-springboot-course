@@ -1,17 +1,13 @@
-package com.codeup.spring_blog.Controllers;
+package com.codeup.spring_blog.controllers;
 
-import com.codeup.spring_blog.Entities.Post;
-import com.codeup.spring_blog.Entities.Users;
-import com.codeup.spring_blog.Repositories.PostRepository;
-import com.codeup.spring_blog.Repositories.UsersRepository;
+import com.codeup.spring_blog.models.Post;
+import com.codeup.spring_blog.models.Users;
+import com.codeup.spring_blog.repositories.PostRepository;
+import com.codeup.spring_blog.repositories.UsersRepository;
 import com.codeup.spring_blog.services.EmailService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.EntityNotFoundException;
 
 @Controller
 public class PostController {
@@ -33,7 +29,7 @@ public class PostController {
 
     }
     //mapping to the post pages get
-    // request so it returns the post
+    // request, so it returns the post
     // creation page on get
     @GetMapping("/post")
     public String getPosts(Model model){
@@ -79,11 +75,12 @@ public class PostController {
     }
 
     @PostMapping("/post/{id}/edit")
-    public String editPost(@ModelAttribute(name = "post") Post post){
-//        postRepository.save(post);
-
+    public String editPost(@ModelAttribute(name = "post") Post post,
+                           @PathVariable(name = "id") int id){
+//      postRepository.save(post);
+        post = postRepository.getReferenceById((long) id);
         emailService.prepareAndSend(post, "Alert Post Edit",
-                "Someone just edited your post so ummmmmmm......could you figure it out or something");
+                "testing to see if the getMail funciton is null");
         return "redirect:/post";
     }
 

@@ -1,12 +1,10 @@
-package com.codeup.spring_blog.Repositories;
+package com.codeup.spring_blog.repositories;
 
-import com.codeup.spring_blog.Entities.Post;
+import com.codeup.spring_blog.models.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 
 @Repository

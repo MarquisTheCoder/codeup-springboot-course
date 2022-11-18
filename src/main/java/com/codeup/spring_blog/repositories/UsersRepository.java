@@ -1,6 +1,6 @@
-package com.codeup.spring_blog.Repositories;
+package com.codeup.spring_blog.repositories;
 
-import com.codeup.spring_blog.Entities.Users;
+import com.codeup.spring_blog.models.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
