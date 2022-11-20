@@ -13,7 +13,6 @@
 	
 	<h1>Edit user data</h1>
 	<form th:action="@{/post/__${id}__/edit}" th:method="post" th:object="${post}" >
-		
 		<h1 th:text="${post.getUser().getEmail()}"></h1>
 		<label for="title">Title for [<span th:text="${id}"></span>] </label>
 		<input th:field="*{title}" id="title" name="title" type="text"/>
@@ -22,11 +21,9 @@
 		<input th:field="*{description}" id="description" name="description"
 		       type="text">
 		<br/>
-		
 		<label for="content">Content</label>
 		<textarea th:field="*{content}"  id="content" name="content"></textarea>
 		<br/>
-		
 		<input type="submit" />
 	</form>
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	
+	<title>spring blog</title>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, width=device-width">
+
+</head>
+<body style="
+display: flex;
+width: 100vw;
+height: 100vh;
+justify-content: center;
+align-items: center;">
+
+	<div class="container-signup"
+		style="
+		display: flex;
+		flex-direction:column;
+		align-items: center;
+		background-color: cadetblue;
+		height: 300px;
+		width: 400px;
+		box-sizing: border-box;
+		border-radius: 20px;
+		padding: 10px 10px 40px 10px;
+"              >
+		<h1>Sign Up</h1>
+		<form th:action="@{/users/sign-up}" th:method="post" th:object="${users}"
+		      style="display: flex; flex-direction: column;">
+			<label for="email">Enter email:</label>
+			<input type="text" id="email" name="email" th:field="*{email}">
+			<label for="password">Enter password: </label>
+			<input type="password" id="password" name="password" th:field="*{password}">
+			<label for="username">Enter username:</label>
+			<input  type="text" id="username" name="username" th:username="*{username}">
+			<button type="submit" style="margin-top: 10px;">Sign Up</button>
+		</form>
+	</div>
+	
+</body>
+</html>

@@ -36,11 +36,20 @@ public class PostController {
         model.addAttribute("all_post", postRepository.findAll());
         return "post/create";
     }
+    @PostMapping("/post")
+    public String postPosts(){
+        return "redirect:/post";
+    }
+
+    @GetMapping("/post/create")
+    public String showCreateNewPost(){
+        return "post/create";
+    }
 
     //telling the controller that on post requests the user
     //data will be submitted to the controller and outputted through the html
     //model page
-    @PostMapping("/post")
+    @PostMapping("/post/create")
     public String createNewPost(
             @RequestParam("post_title") String post_title,
             @RequestParam("post_content") String post_content,
@@ -63,25 +72,32 @@ public class PostController {
             return "redirect:/post";
     }
 
-
     //path to show edit page for page with an id of ${id}
     @GetMapping("/post/{id}/edit")
-    public String editPostShow(@PathVariable(name = "id") int id, Model model){
-        Post post = postRepository.getReferenceById((long) id);
+    public String editPostShow(@PathVariable int id, Model model){
+        //checking to see if the user exist by id and if it doesn't it returns
+        //them to the post page where all post are displayed to the user.
+        if(postRepository.existsById((long) id)){
+            Post post = postRepository.getReferenceById((long) id);
+            model.addAttribute("id", id);
+            model.addAttribute("post", post);
+            return "post/edit";
+        }else{
+           return "redirect:/post";
+        }
 
-        model.addAttribute("id", id);
-        model.addAttribute("post", post);
-        return "post/edit";
     }
 
+    //on post to the edit page given a user id the repository sends the user
+    //data to the repository and then alerts the user with that email
+    //the post was edited just in case someone other than the user edited the post
     @PostMapping("/post/{id}/edit")
-    public String editPost(@ModelAttribute(name = "post") Post post,
-                           @PathVariable(name = "id") int id){
-//      postRepository.save(post);
-        post = postRepository.getReferenceById((long) id);
-        emailService.prepareAndSend(post, "Alert Post Edit",
-                "testing to see if the getMail funciton is null");
+    public String editPost(@ModelAttribute Post post,@PathVariable int id){
+        postRepository.saveAndFlush(post);
+        emailService.prepareAndSend(
+                post,
+                "Alert Post Edit",
+                "testing to see if the getMail function is null");
         return "redirect:/post";
     }
-
 }

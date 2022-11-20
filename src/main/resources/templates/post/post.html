@@ -17,8 +17,17 @@
 
 </head>
 <body>
-	<span th:text="${title}"></span>
-	<br>
-	<span th:text="${post_content}"></span>
+
+
+		<section>
+				<section class="section-post--generation">
+					<div th:each="post: ${all_post}">
+						<p th:text="${post.getUser().getEmail()}"></p>
+						<p th:text="${post.getDescription()}"></p>
+						<p th:text="${post.getContent()}"></p>
+					</div>
+				</section>
+		</section>
+
 </body>
 </html>

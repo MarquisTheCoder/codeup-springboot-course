@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		
+		<title>spring blog</title>
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1, width=device-width">
+
+	</head>
+
+	<body style="
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;">
+	
+		<style>
+			body{
+				background-color: #67485f;
+			}
+			input{
+				padding: 5px 10px;
+				border: none;
+				border-radius: 25px;
+				background-color: #CFEDFFbb;
+				color: #2C3C44;
+			}
+		</style>
+	
+		<div class="container-signup"
+			 style="
+				display: flex;
+				flex-direction:column;
+				align-items: center;
+				background-color: #4D9AC9bb;
+				height: 300px;
+				width: 400px;
+				box-sizing: border-box;
+				border-radius: 20px;
+				padding: 10px 10px 40px 10px;">
+			
+			<h1>Login</h1>
+			<form th:action="@{/users/login}"
+			      th:method="post"
+			      th:object="${users}"
+			      style="display: flex; flex-direction: column;">
+				<label for="email">Enter email:</label>
+				<input th:field="*{email}" type="text" id="email" name="email">
+				<label for="password">Enter password: </label>
+				<input th:field="*{password}"type="password" id="password" name="password">
+				<button type="submit" style="
+				margin-top: 10px;
+				padding: 5px 10px;
+				background-color: white;
+                border: none;
+				border-radius: 20px;
+				cursor: pointer;
+				">Login</button>
+			</form>
+		</div>
+	</body>
+</html>
