@@ -13,6 +13,7 @@ public class GettingDataController {
     public String joinGet(Model model){
         return "getting-data-test";
     }
+
     @RequestMapping(value = "/join", method = RequestMethod.POST)
     public String joinPost(@RequestParam(name = "cohort") String cohort, Model model){
         model.addAttribute("cohort", "welcome to your new cohort " + cohort + "!");

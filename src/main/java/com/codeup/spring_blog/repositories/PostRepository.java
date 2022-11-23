@@ -10,4 +10,5 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public interface PostRepository extends JpaRepository<Post, Long> {
-    }
+
+}

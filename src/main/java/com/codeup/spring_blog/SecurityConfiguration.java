@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private UsersDetailsLoader usersLoader;
+    private final UsersDetailsLoader usersLoader;
 
     public SecurityConfiguration(UsersDetailsLoader usersLoader) {
         this.usersLoader = usersLoader;
@@ -34,15 +34,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                /* Login configuration */
+                /*Login configuration */
                 .formLogin()
                     .loginPage("/login")
-                    .defaultSuccessUrl("/post") // user's home page, it can be any URL
-                    .permitAll() // Anyone can go to the login page
+                    .defaultSuccessUrl("/post") //User's home page, it can be any URL
+                    .permitAll() //Anyone can go to the login page
                 /* Logout configuration */
                 .and()
                     .logout()
                     .logoutSuccessUrl("/login?logout") // append a query string value
+
                 /* Pages that can be viewed without having to log in */
                 .and()
                     .authorizeRequests()
@@ -53,9 +54,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .authorizeRequests()
                         .antMatchers(
                         "/post/create", // only authenticated users can create ads
-                            "/post/{id}/edit" // only authenticated users can edit ads
+                                        "/post/{id}/edit" // only authenticated users can edit ads
                      )
-
                 .authenticated()
         ;
     }
