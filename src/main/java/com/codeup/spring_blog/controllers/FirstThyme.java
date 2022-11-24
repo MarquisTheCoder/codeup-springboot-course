@@ -11,6 +11,6 @@ public class FirstThyme {
     @GetMapping("/thyme/{test}")
     public String home(@PathVariable String test, Model model){
         model.addAttribute("test", test);
-        return "home";
+        return "showing-data-test";
     }
 }
