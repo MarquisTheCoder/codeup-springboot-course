@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class UserController {
     private final UsersRepository usersRepository;
-    private final PasswordEncoder passwordEncoder;
+//    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UsersRepository usersRepository,
-                          PasswordEncoder passwordEncoder){
+    public UserController(UsersRepository usersRepository
+                          ){
         this.usersRepository = usersRepository;
-        this.passwordEncoder = passwordEncoder;
+//        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/users/sign-up")
@@ -26,8 +26,8 @@ public class UserController {
 
     @PostMapping("/users/sign-up")
     public String postSignUpPage(@ModelAttribute Users users){
-        String hash = passwordEncoder.encode(users.getPassword());
-        users.setPassword(hash);
+//        String hash = passwordEncoder.encode(users.getPassword());
+//        users.setPassword(hash);
         usersRepository.save(users);
         return "redirect:/login";
     }

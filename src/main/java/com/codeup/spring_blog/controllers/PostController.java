@@ -44,7 +44,9 @@ public class PostController {
     }
 
     @GetMapping("/post/create")
-    public String showCreateNewPost(){
+    public String showCreateNewPost(Model model){
+        Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("username", user.getUsername());
         return "post/create";
     }
 
@@ -60,7 +62,6 @@ public class PostController {
 //        Users user = (Users) usersRepository.getReferenceById(1L);
         Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-
         //creating a Post
         // object to be saved
         // to the server
@@ -69,7 +70,7 @@ public class PostController {
                     .title(post_title)
                     .description(post_description)
                     .content(post_content)
-                    .user((Users)user)
+                    .user(usersRepository.findAll().get(0))
                     .build();
 
             String email = post.getUser().getEmail();

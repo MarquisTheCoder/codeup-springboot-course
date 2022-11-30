@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      >
 
 <!--
     Creator: Deshawn Marquis, Williams
@@ -20,13 +20,13 @@
 </head>
 <body>
 <!-- ... -->
-<div sec:authorize="isAuthenticated()">
-	This content is only shown to authenticated users.
-	
-	User ID: <span th:text="${#authentication.principal.id}"/>
-	Username: <span th:text="${#authentication.principal.username}"/>
-	Email: <span th:text="${#authentication.principal.email}"/>
-</div>
+<!--<div sec:authorize="isAuthenticated()">-->
+<!--	This content is only shown to authenticated users.-->
+<!--	-->
+<!--	User ID: <span th:text="${#authentication.principal.id}"/>-->
+<!--	Username: <span th:text="${#authentication.principal.username}"/>-->
+<!--	Email: <span th:text="${#authentication.principal.email}"/>-->
+<!--</div>-->
 	<form th:action="@{/logout}" th:method="post">
 		<button class="btn-link btn" style="margin-top: 8px">Logout</button>
 	</form>
